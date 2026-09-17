@@ -1,107 +1,55 @@
 (() => {
   'use strict';
-
-  const config = window.LHISD_TIP_CONFIG || {};
+  const cfg = window.LHISD_TIP_CONFIG || {};
   const form = document.getElementById('tipForm');
   const frame = document.getElementById('submissionFrame');
-  const submitBtn = document.getElementById('submitBtn');
-  const errorBox = document.getElementById('formError');
-  const sentState = document.getElementById('sentState');
-  const anotherBtn = document.getElementById('anotherBtn');
+  const btn = document.getElementById('submitBtn');
+  const error = document.getElementById('formError');
+  const sent = document.getElementById('sentState');
+  const another = document.getElementById('anotherBtn');
   const narrative = document.getElementById('narrative');
   const counter = document.getElementById('counter');
+  const reportId = document.getElementById('reportId');
+  let timer = null;
 
-  let awaitingResponse = false;
-  let fallbackTimer = null;
-
-  if (!config.endpoint || !/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec$/.test(config.endpoint)) {
-    showError('The TEST submission endpoint is not configured correctly.');
-    submitBtn.disabled = true;
-  } else {
-    form.action = config.endpoint;
+  if (!cfg.endpoint || !/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec$/.test(cfg.endpoint)) {
+    fail('The submission service is not configured.'); btn.disabled = true; return;
   }
 
-  narrative.addEventListener('input', () => {
-    counter.textContent = `${narrative.value.length.toLocaleString()} / 10,000`;
+  narrative.addEventListener('input', () => counter.textContent = `${narrative.value.length.toLocaleString()} / 10,000`);
+  document.getElementById('clientUserAgent').value = navigator.userAgent || '';
+  document.getElementById('sourcePage').value = location.href.split('#')[0];
+
+  form.addEventListener('submit', (ev) => {
+    ev.preventDefault(); clear();
+    if (!form.checkValidity()) { markInvalid(); fail('Please complete all required fields before submitting.'); form.querySelector(':invalid')?.focus(); return; }
+    if (document.getElementById('website').value) { fail('Unable to submit this report.'); return; }
+
+    btn.disabled = true; btn.textContent = 'Submitting…';
+    const payload = new URLSearchParams(new FormData(form));
+    const temp = document.createElement('form');
+    temp.method = 'POST'; temp.action = cfg.endpoint; temp.target = 'submissionFrame'; temp.hidden = true;
+    for (const [key, value] of payload.entries()) { const input = document.createElement('input'); input.name = key; input.value = value; temp.appendChild(input); }
+    document.body.appendChild(temp); temp.submit(); temp.remove();
+
+    timer = setTimeout(() => { resetButton(); fail('We could not confirm that your report was stored. Please try again.'); }, 15000);
   });
 
-  form.addEventListener('submit', (event) => {
-    clearValidation();
-
-    if (!form.checkValidity()) {
-      event.preventDefault();
-      markInvalidFields();
-      showError('Please complete all required fields before submitting.');
-      const firstInvalid = form.querySelector(':invalid');
-      if (firstInvalid) firstInvalid.focus();
-      return;
-    }
-
-    if (document.getElementById('website').value) {
-      event.preventDefault();
-      showSentState();
-      return;
-    }
-
-    awaitingResponse = true;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
-
-    // Apps Script web apps are cross-origin from GitHub Pages. A native POST
-    // to a hidden iframe avoids relying on browser CORS access to the JSON body.
-    // The iframe load tells us the endpoint returned; the TEST spreadsheet is
-    // the authoritative verification that the row was actually stored.
-    fallbackTimer = window.setTimeout(() => {
-      if (awaitingResponse) showSentState();
-    }, 4500);
+  window.addEventListener('message', (event) => {
+    if (!cfg.allowedMessageOrigins.includes(event.origin)) return;
+    const data = event.data || {};
+    if (data.source !== 'lhisd-tip-intake') return;
+    clearTimeout(timer);
+    if (data.success && data.stored && data.reportId) {
+      reportId.textContent = data.reportId; form.hidden = true; sent.hidden = false; sent.focus();
+    } else { resetButton(); fail(data.message || 'Your report was not stored. Please try again.'); }
   });
 
-  frame.addEventListener('load', () => {
-    if (!awaitingResponse) return;
-    window.clearTimeout(fallbackTimer);
-    showSentState();
-  });
+  another.addEventListener('click', () => { sent.hidden = true; form.hidden = false; form.reset(); counter.textContent = '0 / 10,000'; document.getElementById('clientUserAgent').value = navigator.userAgent || ''; document.getElementById('sourcePage').value = location.href.split('#')[0]; resetButton(); clear(); document.getElementById('concernType').focus(); });
+  form.addEventListener('input', e => { if (e.target.matches('[aria-invalid="true"]') && e.target.checkValidity()) e.target.removeAttribute('aria-invalid'); if (!error.hidden) error.hidden = true; });
 
-  anotherBtn.addEventListener('click', () => {
-    sentState.hidden = true;
-    form.hidden = false;
-    form.reset();
-    counter.textContent = '0 / 10,000';
-    clearValidation();
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Submit test tip';
-    document.getElementById('concernType').focus();
-  });
-
-  form.addEventListener('input', (event) => {
-    if (event.target.matches('[aria-invalid="true"]') && event.target.checkValidity()) {
-      event.target.removeAttribute('aria-invalid');
-    }
-    if (!errorBox.hidden) errorBox.hidden = true;
-  });
-
-  function markInvalidFields() {
-    form.querySelectorAll('input,select,textarea').forEach((field) => {
-      if (!field.checkValidity()) field.setAttribute('aria-invalid', 'true');
-    });
-  }
-
-  function clearValidation() {
-    form.querySelectorAll('[aria-invalid="true"]').forEach((field) => field.removeAttribute('aria-invalid'));
-    errorBox.hidden = true;
-    errorBox.textContent = '';
-  }
-
-  function showError(message) {
-    errorBox.textContent = message;
-    errorBox.hidden = false;
-  }
-
-  function showSentState() {
-    awaitingResponse = false;
-    window.clearTimeout(fallbackTimer);
-    form.hidden = true;
-    sentState.hidden = false;
-    sentState.focus();
-  }
+  function resetButton(){ btn.disabled = false; btn.textContent = 'Submit test tip'; }
+  function markInvalid(){ form.querySelectorAll('input,select,textarea').forEach(f => { if (!f.checkValidity()) f.setAttribute('aria-invalid','true'); }); }
+  function clear(){ form.querySelectorAll('[aria-invalid="true"]').forEach(f => f.removeAttribute('aria-invalid')); error.hidden = true; error.textContent = ''; }
+  function fail(msg){ error.textContent = msg; error.hidden = false; }
 })();

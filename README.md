@@ -1,32 +1,24 @@
-# LHISD Anonymous Tip Line — TEST Intake (V22)
+# LHISD Anonymous Tip Line — V23 Production-Track TEST
 
-Static GitHub Pages-ready test intake for Liberty Hill ISD.
+Production-shaped test build for the Liberty Hill ISD Anonymous Tip Line.
 
-## Purpose
+## What changed
+- Stable `AR-YYYY-######` report IDs generated server-side.
+- Production-shaped Google Sheet schema instead of writing to the Google Form response tab.
+- Separate restricted `Security Metadata` table.
+- Case Management and Audit Log records created at intake.
+- Verified acknowledgement: the green success screen is shown only after Apps Script reports that storage succeeded.
+- Exact LHISD Texas seal supplied by the district is used as favicon.
+- Explicit technical-data privacy notice.
 
-This build tests the path:
+## Important
+This remains a TEST environment. IP address capture is intentionally blank in the Apps Script-direct path because Apps Script does not reliably expose the originating visitor IP. V23 prepares the restricted metadata schema for the edge-ingestion layer that will capture it later.
 
-`Custom public intake -> Google Apps Script web app -> TEST Google Sheet`
-
-It is deliberately marked TEST and should never receive real student, staff, medical, or safety information.
-
-## Files
-
-- `index.html` — public intake
-- `styles.css` — responsive LHISD styling
-- `app.js` — validation and Apps Script submission behavior
-- `config.js` — TEST Apps Script `/exec` endpoint
-- `assets/` — official LHISD logo files
-
-## Test
-
-1. Serve this folder over HTTP (GitHub Pages, VS Code Live Server, or `python3 -m http.server`).
-2. Submit fictitious values.
-3. Open `Anonymous Tip Line - TEST Responses`.
-4. Confirm a new row contains the submitted values in the expected columns.
-
-The success screen intentionally says **sent**, not **received**. Apps Script web apps are cross-origin from GitHub Pages, so the browser cannot reliably inspect the response body. The TEST spreadsheet is the authoritative verification during this integration step.
-
-## Production note
-
-Do not simply remove the TEST labels and call this production. After the data path is verified, production should use the production endpoint, final source taxonomy, abuse controls, and a confirmation strategy appropriate for the deployed environment.
+## Install
+1. In the existing TEST Apps Script project, replace `Code.gs` with `apps-script/Code.gs`.
+2. Save and run `initializeV23Datastore` once. Approve permissions if prompted.
+3. Run `testV23Datastore`; confirm `SUCCESS: V23 datastore verified.`
+4. Update the existing Web App deployment to a New version, keeping Execute as Me and access Anyone.
+5. Open the `/exec` URL and confirm it reports `schema: v23`.
+6. Upload `index.html`, `styles.css`, `app.js`, `config.js`, and `assets/` to the root of the public `tips` GitHub repository.
+7. Submit a fictitious test. A confirmed submission should show a stable report ID and create rows in Reports, Security Metadata, Case Management, and Audit Log.
