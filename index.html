@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Anonymous Tip Line - TEST | Liberty Hill ISD</title>
+  <link rel="icon" href="assets/lhisd-texas.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#tipForm">Skip to form</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <img src="assets/lhisd-full.png" alt="Liberty Hill ISD" class="district-logo">
+      <span class="test-pill">TEST ENVIRONMENT</span>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro" aria-labelledby="pageTitle">
+      <div>
+        <h1 id="pageTitle">Anonymous Tip Line</h1>
+        <p>Speak up for a safer community with our Liberty Hill ISD Anonymous Tip Line. Report concerns, incidents or information that may help us support the safety and wellbeing of our schools.</p>
+      </div>
+      <aside class="emergency" aria-label="Emergency notice">
+        <strong>Immediate danger?</strong>
+        <p>Call 911. This form is not an emergency service and submissions may not be reviewed immediately.</p>
+      </aside>
+    </section>
+
+    <div class="test-notice" role="note">
+      <strong>Testing only.</strong> Do not submit an actual safety concern through this test form. Use fictitious information so we can verify the new reporting system.
+    </div>
+
+    <section class="form-card">
+      <div class="form-heading">
+        <h2>Submit a test tip</h2>
+        <p>Fields marked <span aria-hidden="true">*</span><span class="sr-only">with an asterisk</span> are required. Contact information is optional.</p>
+      </div>
+
+      <form id="tipForm" method="post" target="submissionFrame" novalidate>
+        <div class="field-grid two">
+          <div class="field">
+            <label for="concernType">What type of concern are you submitting? <span>*</span></label>
+            <select id="concernType" name="concernType" required>
+              <option value="">Select a concern type</option>
+              <option>Safety Concern</option>
+              <option>Student Concern</option>
+              <option>Staff Concern</option>
+              <option>Facility Concern</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="category">Please select a category <span>*</span></label>
+            <select id="category" name="category" required>
+              <option value="">Select a category</option>
+              <option>Bullying</option>
+              <option>Cyberbullying</option>
+              <option>Drugs / Alcohol</option>
+              <option>Fighting / Violence</option>
+              <option>Harassment</option>
+              <option>Mental Health / Self-Harm</option>
+              <option>Safety / Security</option>
+              <option>Threat</option>
+              <option>Vandalism</option>
+              <option>Weapons</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="campus">Please select a campus <span>*</span></label>
+          <select id="campus" name="campus" required>
+            <option value="">Select a campus or location</option>
+            <optgroup label="High Schools">
+              <option>Legacy Ranch High School</option>
+              <option>Liberty Hill High School</option>
+            </optgroup>
+            <optgroup label="Middle Schools">
+              <option>Legacy Ranch Middle School</option>
+              <option>Liberty Hill Middle School</option>
+              <option>Santa Rita Middle School</option>
+            </optgroup>
+            <optgroup label="Elementary / Early Learning">
+              <option>Bar W Elementary</option>
+              <option>Bill Burden Elementary</option>
+              <option>Lariat Trails Elementary</option>
+              <option>Liberty Hill Elementary</option>
+              <option>Louine Noble ELC</option>
+              <option>Rancho Sienna Elementary</option>
+              <option>Santa Rita Elementary</option>
+              <option>Tierra Rosa Elementary</option>
+            </optgroup>
+            <optgroup label="Other">
+              <option>District / Administration</option>
+              <option>Transportation</option>
+              <option>Other / Not Sure</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="field">
+          <div class="label-row">
+            <label for="narrative">Please provide the details of your tip here <span>*</span></label>
+            <small id="counter">0 / 10,000</small>
+          </div>
+          <textarea id="narrative" name="narrative" rows="8" maxlength="10000" required placeholder="Tell us what happened. Include relevant people, locations, dates, times or other details when known."></textarea>
+        </div>
+
+        <fieldset>
+          <legend>Optional contact information</legend>
+          <p class="fieldset-help">Leave these fields blank if you wish to remain anonymous.</p>
+          <div class="field-grid two">
+            <div class="field">
+              <label for="name">Name <span class="optional">Optional</span></label>
+              <input id="name" name="name" type="text" maxlength="200" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="email">Email <span class="optional">Optional</span></label>
+              <input id="email" name="email" type="email" maxlength="320" autocomplete="email">
+            </div>
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number <span class="optional">Optional</span></label>
+            <input id="phone" name="phone" type="tel" maxlength="100" autocomplete="tel">
+          </div>
+        </fieldset>
+
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Website</label>
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div id="formError" class="form-error" role="alert" hidden></div>
+
+        <div class="submit-row">
+          <p>By submitting, you are sending this test report to Liberty Hill ISD's TEST response spreadsheet.</p>
+          <button id="submitBtn" type="submit">Submit test tip</button>
+        </div>
+      </form>
+
+      <section id="sentState" class="sent-state" hidden tabindex="-1">
+        <div class="sent-icon" aria-hidden="true">✓</div>
+        <h2>Test submission sent</h2>
+        <p>The browser sent your test tip to the LHISD TEST intake endpoint.</p>
+        <div class="verify-box">
+          <strong>Now verify the test spreadsheet.</strong>
+          <p>Look for a new row containing the exact test details you entered. We will not treat this test as production-ready until the row is confirmed there.</p>
+        </div>
+        <button id="anotherBtn" type="button" class="secondary">Submit another test</button>
+      </section>
+    </section>
+
+    <p class="privacy-note">This TEST page is for integration testing only. Do not enter real student, staff, medical or safety information.</p>
+  </main>
+
+  <iframe id="submissionFrame" name="submissionFrame" title="Submission response" hidden></iframe>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
