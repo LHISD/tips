@@ -176,7 +176,7 @@
 
   function resetButton() {
     btn.disabled = false;
-    btn.textContent = 'Submit test tip';
+    btn.textContent = 'Submit tip';
   }
 
   function markInvalid() {
