@@ -1,27 +1,13 @@
-# LHISD Anonymous Tip Line — V28 Frontend Polish
+# LHISD Anonymous Tip Line — V29
 
-Public GitHub Pages frontend for the Liberty Hill ISD Anonymous Tip Line.
+Frontend-only visual refinement using the established LHISD Health Services design language.
 
-## V28 changes
-- Reduced excess vertical space in the site header and hero.
-- Tightened the relationship between the page introduction, emergency notice and form card.
-- Reduced unnecessary top padding inside the form card.
-- Standardized field, section and divider spacing for a more consistent vertical rhythm.
-- Improved desktop width balance while preserving a focused form layout.
-- Improved tablet and mobile spacing and stacking behavior.
-- Kept the existing public submission pipeline unchanged.
-
-## Pipeline preserved
-`GitHub Pages -> Cloudflare Worker -> Apps Script -> private datastore`
-
-No submission fields, endpoint logic, payload names, report-ID validation, security metadata behavior or acknowledgement logic were changed.
-
-## Files
-- `index.html`
-- `styles.css`
-- `app.js`
-- `config.js`
-- `assets/lhisd-full.png`
-- `assets/lhisd-texas.png`
-
-Upload the complete contents of this folder to the root of the existing public `tips` GitHub repository.
+## V29
+- Fixes the first form-row collision beneath “Submit a tip.”
+- Adds a deliberate 24px section break after the form introduction/divider.
+- Standardizes 22px field spacing and 9px label-to-control spacing.
+- Gives inputs/selects a consistent 48px control height.
+- Gives the narrative field more comfortable writing space.
+- Uses softer 18px cards, restrained borders/shadows, and balanced white space.
+- Improves mobile rhythm.
+- Does not change the submission pipeline, payload, validation, Cloudflare Worker, or Apps Script backend.

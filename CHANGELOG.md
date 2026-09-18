@@ -1,5 +1,14 @@
 # Changelog
 
+## V29 — Form spacing / Health Services polish
+- Corrected first-row collision below form heading.
+- Reworked vertical rhythm across all fields and sections.
+- Standardized control heights and label spacing.
+- Refined card radius, border and shadow.
+- Preserved all ingestion behavior.
+
+# Changelog
+
 ## V28 — Frontend spacing and responsive polish
 - Compact site header.
 - Reduced hero whitespace.
