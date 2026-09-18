@@ -1,5 +1,16 @@
 # Changelog
 
+## V28 — Frontend spacing and responsive polish
+- Compact site header.
+- Reduced hero whitespace.
+- Balanced emergency notice alignment.
+- Tightened form heading and body padding.
+- Standardized field spacing and section dividers.
+- Improved mobile/tablet rhythm.
+- Preserved ingestion behavior and backend contract.
+
+# Changelog
+
 ## V22 — Apps Script TEST integration
 - Rebuilt the public intake as a standalone static GitHub Pages project.
 - Removed dependency on the prior Node/PostgreSQL submission architecture.
