@@ -8,35 +8,128 @@
   <title>Anonymous Tip Line | Liberty Hill ISD</title>
   <link rel="icon" type="image/png" href="assets/lhisd-texas.png">
   <link rel="apple-touch-icon" href="assets/lhisd-texas.png">
-  <link rel="stylesheet" href="styles.css?v=29">
+  <link rel="stylesheet" href="styles.css?v=30">
 </head>
 <body>
 <a class="skip" href="#tipForm">Skip to form</a>
-<header class="site-header"><div class="header-inner"><img src="assets/lhisd-full.png" alt="Liberty Hill ISD" class="district-logo"></div></header>
+
+<header class="site-header">
+  <div class="header-inner">
+    <img src="assets/lhisd-full.png" alt="Liberty Hill ISD" class="district-logo">
+    <div class="header-tagline">Building Champions</div>
+  </div>
+</header>
+
 <main class="page-shell">
+  <div class="hero-star" aria-hidden="true">★</div>
+
   <section class="intro" aria-labelledby="pageTitle">
-    <div><h1 id="pageTitle">Anonymous Tip Line</h1><p>Report a concern, incident or information that may help Liberty Hill ISD support the safety and wellbeing of our schools.</p></div>
-    <aside class="emergency"><strong>Immediate danger?</strong><p>Call 911. This form is not an emergency service and submissions may not be reviewed immediately.</p></aside>
+    <div>
+      <h1 id="pageTitle">Anonymous Tip Line</h1>
+      <p>Report a concern, incident or information that may help Liberty Hill ISD support the safety and wellbeing of our schools.</p>
+    </div>
+    <aside class="emergency" aria-label="Emergency notice">
+      <div class="emergency-icon" aria-hidden="true">!</div>
+      <div class="emergency-copy">
+        <strong>Immediate danger?</strong>
+        <p>Call 911. This form is not an emergency service and submissions may not be reviewed immediately.</p>
+      </div>
+    </aside>
   </section>
+
   <section class="form-card">
     <form id="tipForm" novalidate>
-      <div class="form-heading"><h2>Submit a tip</h2><p>Required fields are marked with an asterisk. You do not have to provide your name or contact information.</p></div>
-      <div class="field-grid two">
-        <div class="field"><label for="concernType">What type of concern are you submitting? <span>*</span></label><select id="concernType" name="concernType" required><option value="">Select a concern type</option><option>Safety Concern</option><option>Student Concern</option><option>Staff Concern</option><option>Facility Concern</option><option>Other</option></select></div>
-        <div class="field"><label for="category">Please select a category <span>*</span></label><select id="category" name="category" required><option value="">Select a category</option><option>Bullying</option><option>Cyberbullying</option><option>Drugs / Alcohol</option><option>Fighting / Violence</option><option>Harassment</option><option>Mental Health / Self-Harm</option><option>Safety / Security</option><option>Threat</option><option>Vandalism</option><option>Weapons</option><option>Other</option></select></div>
+      <div class="form-heading">
+        <h2>Submit a tip</h2>
+        <p>Required fields are marked with an asterisk. You do not have to provide your name or contact information.</p>
       </div>
-      <div class="field"><label for="campus">Please select a campus <span>*</span></label><select id="campus" name="campus" required><option value="">Select a campus or location</option><optgroup label="High Schools"><option>Legacy Ranch High School</option><option>Liberty Hill High School</option></optgroup><optgroup label="Middle Schools"><option>Legacy Ranch Middle School</option><option>Liberty Hill Middle School</option><option>Santa Rita Middle School</option></optgroup><optgroup label="Elementary / Early Learning"><option>Bar W Elementary</option><option>Bill Burden Elementary</option><option>Lariat Trails Elementary</option><option>Liberty Hill Elementary</option><option>Louine Noble ELC</option><option>Rancho Sienna Elementary</option><option>Santa Rita Elementary</option><option>Tierra Rosa Elementary</option></optgroup><optgroup label="Other"><option>District / Administration</option><option>Transportation</option><option>Other / Not Sure</option></optgroup></select></div>
-      <div class="field"><div class="label-row"><label for="narrative">Please provide the details of your tip here <span>*</span></label><small id="counter">0 / 10,000</small></div><textarea id="narrative" name="narrative" rows="8" maxlength="10000" required placeholder="Tell us what happened. Include relevant people, locations, dates, times or other details when known."></textarea></div>
-      <fieldset><legend>Optional contact information</legend><p class="fieldset-help">Leave these fields blank if you wish to submit without identifying yourself.</p><div class="field-grid two"><div class="field"><label for="name">Name <span class="optional">Optional</span></label><input id="name" name="name" maxlength="200" autocomplete="name"></div><div class="field"><label for="email">Email <span class="optional">Optional</span></label><input id="email" name="email" type="email" maxlength="320" autocomplete="email"></div></div><div class="field"><label for="phone">Phone Number <span class="optional">Optional</span></label><input id="phone" name="phone" type="tel" maxlength="100" autocomplete="tel"></div></fieldset>
-      <div class="privacy-box"><strong>Privacy and system security</strong><p>You may submit without providing your name or contact information. For safety, security and misuse prevention, Liberty Hill ISD may collect technical information associated with a submission, including IP address and submission metadata, in accordance with district policies and applicable law.</p></div>
+
+      <div class="field-grid two">
+        <div class="field">
+          <label for="concernType">What type of concern are you submitting? <span>*</span></label>
+          <select id="concernType" name="concernType" required>
+            <option value="">Select a concern type</option>
+            <option>Safety Concern</option><option>Student Concern</option><option>Staff Concern</option><option>Facility Concern</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="category">Please select a category <span>*</span></label>
+          <select id="category" name="category" required>
+            <option value="">Select a category</option>
+            <option>Bullying</option><option>Cyberbullying</option><option>Drugs / Alcohol</option><option>Fighting / Violence</option><option>Harassment</option><option>Mental Health / Self-Harm</option><option>Safety / Security</option><option>Threat</option><option>Vandalism</option><option>Weapons</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="campus">Please select a campus <span>*</span></label>
+        <select id="campus" name="campus" required>
+          <option value="">Select a campus or location</option>
+          <optgroup label="High Schools"><option>Legacy Ranch High School</option><option>Liberty Hill High School</option></optgroup>
+          <optgroup label="Middle Schools"><option>Legacy Ranch Middle School</option><option>Liberty Hill Middle School</option><option>Santa Rita Middle School</option></optgroup>
+          <optgroup label="Elementary / Early Learning"><option>Bar W Elementary</option><option>Bill Burden Elementary</option><option>Lariat Trails Elementary</option><option>Liberty Hill Elementary</option><option>Louine Noble ELC</option><option>Rancho Sienna Elementary</option><option>Santa Rita Elementary</option><option>Tierra Rosa Elementary</option></optgroup>
+          <optgroup label="Other"><option>District / Administration</option><option>Transportation</option><option>Other / Not Sure</option></optgroup>
+        </select>
+      </div>
+
+      <div class="field">
+        <div class="label-row">
+          <label for="narrative">Please provide the details of your tip here <span>*</span></label>
+          <small id="counter">0 / 10,000</small>
+        </div>
+        <textarea id="narrative" name="narrative" rows="8" maxlength="10000" required placeholder="Tell us what happened. Include relevant people, locations, dates, times or other details when known."></textarea>
+      </div>
+
+      <fieldset>
+        <legend>Optional contact information</legend>
+        <p class="fieldset-help">Leave these fields blank if you wish to submit without identifying yourself.</p>
+        <div class="contact-grid">
+          <div class="field">
+            <label for="name">Name <span class="optional">Optional</span></label>
+            <input id="name" name="name" maxlength="200" autocomplete="name" placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="optional">Optional</span></label>
+            <input id="email" name="email" type="email" maxlength="320" autocomplete="email" placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number <span class="optional">Optional</span></label>
+            <input id="phone" name="phone" type="tel" maxlength="100" autocomplete="tel" placeholder="(555) 555-5555">
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="privacy-box">
+        <div class="privacy-icon" aria-hidden="true">◆</div>
+        <div class="privacy-copy">
+          <strong>Privacy and system security</strong>
+          <p>You may submit without providing your name or contact information. For safety, security and misuse prevention, Liberty Hill ISD may collect technical information associated with a submission, including IP address and submission metadata, in accordance with district policies and applicable law.</p>
+        </div>
+      </div>
+
       <div class="honeypot" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
       <input type="hidden" id="clientUserAgent" name="clientUserAgent">
       <input type="hidden" id="sourcePage" name="sourcePage">
       <div id="formError" class="form-error" role="alert" hidden></div>
-      <div class="submit-row"><p>Your report will be securely submitted to Liberty Hill ISD.</p><button id="submitBtn" type="submit">Submit tip</button></div>
+
+      <div class="submit-row">
+        <p>Your report will be securely submitted to Liberty Hill ISD.</p>
+        <button id="submitBtn" type="submit">Submit tip</button>
+      </div>
     </form>
-    <section id="sentState" class="sent-state" hidden tabindex="-1"><div class="sent-icon">✓</div><h2>Tip received</h2><p>Your submission has been received by Liberty Hill ISD.</p><div class="reference-box"><span>Report reference</span><strong id="reportId">—</strong></div><p class="confirmation-note">Keep this reference number if you need to identify your submission later.</p><button id="anotherBtn" type="button" class="secondary">Submit another tip</button></section>
+
+    <section id="sentState" class="sent-state" hidden tabindex="-1">
+      <div class="sent-icon">✓</div>
+      <h2>Tip received</h2>
+      <p>Your submission has been received by Liberty Hill ISD.</p>
+      <div class="reference-box"><span>Report reference</span><strong id="reportId">—</strong></div>
+      <p class="confirmation-note">Keep this reference number if you need to identify your submission later.</p>
+      <button id="anotherBtn" type="button" class="secondary">Submit another tip</button>
+    </section>
   </section>
 </main>
-<script src="config.js?v=29"></script><script src="app.js?v=29"></script>
-</body></html>
+
+<script src="config.js?v=30"></script>
+<script src="app.js?v=30"></script>
+</body>
+</html>

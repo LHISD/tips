@@ -1,13 +1,12 @@
-# LHISD Anonymous Tip Line — V29
+# LHISD Anonymous Tip Line — V30 Final Photo Match
 
-Frontend-only visual refinement using the established LHISD Health Services design language.
+Frontend-only build matching the approved visual mockup.
 
-## V29
-- Fixes the first form-row collision beneath “Submit a tip.”
-- Adds a deliberate 24px section break after the form introduction/divider.
-- Standardizes 22px field spacing and 9px label-to-control spacing.
-- Gives inputs/selects a consistent 48px control height.
-- Gives the narrative field more comfortable writing space.
-- Uses softer 18px cards, restrained borders/shadows, and balanced white space.
-- Improves mobile rhythm.
-- Does not change the submission pipeline, payload, validation, Cloudflare Worker, or Apps Script backend.
+- BUILDING CHAMPIONS header treatment
+- restrained gold star background
+- centered 940px form card
+- compact modern field spacing
+- three-column optional contact row on desktop
+- emergency and privacy visual treatments
+- responsive tablet/mobile layout
+- existing GitHub Pages -> Cloudflare Worker -> Apps Script pipeline unchanged

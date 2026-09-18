@@ -1,5 +1,11 @@
 # Changelog
 
+## V30 — Final approved visual target
+- Rebuilt frontend to match approved mockup.
+- No ingestion/backend changes.
+
+# Changelog
+
 ## V29 — Form spacing / Health Services polish
 - Corrected first-row collision below form heading.
 - Reworked vertical rhythm across all fields and sections.
