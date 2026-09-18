@@ -1,5 +1,13 @@
 # Changelog
 
+## V31 - Form spacing correction
+- Separated the form introduction from the input controls with a dedicated bordered header frame.
+- Added 30px of structural spacing before the first field row.
+- Increased vertical spacing between field groups and optional-contact controls.
+- Preserved all existing field names, submission logic, validation, endpoint configuration, branding, and security behavior.
+
+# Changelog
+
 ## V30 — Final approved visual target
 - Rebuilt frontend to match approved mockup.
 - No ingestion/backend changes.
